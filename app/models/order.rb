@@ -13,9 +13,8 @@ class Order < ApplicationRecord
   # POST customer onto order {mid}/orders/{oid}/ => {customers: [{customerObject}]}
 
   def self.create_order_on_COS(params)
-    access_token = Rails.application.secrets.clover_access_token
-    mId = Rails.application.secrets.clover_mid
-    debugger
+    access_token = ENV["_SECRET_CLOVER_ACCESS_TOKEN"]
+    mId = ENV["_SECRET_CLOVER_MID"]
     base_url = "https://sandbox.dev.clover.com/v3/merchants/#{mId}/"
     res = HTTP.auth("Bearer #{access_token}").post(base_url + "orders/",
       body: ({state: "open"}).to_json)
@@ -42,9 +41,9 @@ class Order < ApplicationRecord
   end
 
   def self.send_notification(order)
-    app_secret = Rails.application.secrets.clover_app_secret
-    mId = Rails.application.secrets.clover_mid
-    aId = Rails.application.secrets.clover_app_id
+    app_secret = ENV["_SECRET_CLOVER_APP_SECRET"]
+    mId = ENV["_SECRET_CLOVER_MID"]
+    aId = ENV["_SECRET_CLOVER_APP_ID"]
     base_url = "https://sandbox.dev.clover.com/v3/apps/#{aId}/merchants/#{mId}/"
 
     res = HTTP.auth("Bearer #{app_secret}").post(base_url + "notifications/",
