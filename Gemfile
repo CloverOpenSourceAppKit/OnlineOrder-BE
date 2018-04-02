@@ -18,6 +18,8 @@ gem 'rails', '~> 5.1.5'
   gem 'pg'
 # end
 
+gem 'heroku_secrets', github: 'CloverOpenSourceAppKit/OnlineOrder-BE'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
