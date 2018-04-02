@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180322223910) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "merchants", force: :cascade do |t|
     t.string "uuid", null: false
     t.datetime "created_at", null: false
